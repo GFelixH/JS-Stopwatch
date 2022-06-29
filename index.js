@@ -8,23 +8,28 @@ let segundos = document.querySelector("#segundos");
 // zera.addEventListener("click");
 let inicio;
 let final;
+
+let controlador = false;
 comeca.addEventListener("click", () => {
   //captura tempo inicial
   inicio = new Date();
   console.log(inicio);
+  controlador = true;
 });
 para.addEventListener("click", () => {
   // captura tempo final
   final = new Date();
   console.log(final);
-
-  let minF = final.getMinutes();
-  let minI = inicio.getMinutes();
-  let segF = final.getSeconds();
-  let segI = inicio.getSeconds();
-  let seg = calc(segI, segF);
-  let min = calc(minI, minF);
-  setTimer(min, seg);
+  if (controlador) {
+    let minF = final.getMinutes();
+    let minI = inicio.getMinutes();
+    let segF = final.getSeconds();
+    let segI = inicio.getSeconds();
+    let seg = calc(segI, segF);
+    let min = calc(minI, minF);
+    setTimer(min, seg);
+    controlador = false;
+  }
 });
 function calc(i, o) {
   let tempo;
