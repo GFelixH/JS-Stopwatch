@@ -1,0 +1,25 @@
+* {
+  background: burlywood;
+}
+main {
+  margin: 200px 10% 0 10%;
+}
+.titulo {
+  font-size: 3rem;
+  text-align: center;
+}
+.contador {
+  text-align: center;
+  font-size: 2rem;
+}
+main div {
+  margin-top: 3rem;
+  text-align: center;
+}
+main div button {
+  padding: 10px 20px;
+  background-color: yellowgreen;
+}
+main div button:hover {
+  cursor: pointer;
+}
