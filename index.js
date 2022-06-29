@@ -5,21 +5,17 @@ let zera = document.querySelector("#zera");
 //span tempo
 let minutos = document.querySelector("#minutos");
 let segundos = document.querySelector("#segundos");
-// zera.addEventListener("click");
+
 let inicio;
 let final;
-
 let controlador = false;
+
 comeca.addEventListener("click", () => {
-  //captura tempo inicial
   inicio = new Date();
-  console.log(inicio);
   controlador = true;
 });
 para.addEventListener("click", () => {
-  // captura tempo final
   final = new Date();
-  console.log(final);
   if (controlador) {
     let minF = final.getMinutes();
     let minI = inicio.getMinutes();
@@ -51,3 +47,7 @@ function formataTempo(x) {
   if (x < 10) return "0" + x;
   return x;
 }
+zera.addEventListener("click", () => {
+  segundos.textContent = "00";
+  minutos.textContent = "00";
+});
