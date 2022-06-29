@@ -22,14 +22,11 @@ para.addEventListener("click", () => {
   let minI = inicio.getMinutes();
   let segF = final.getSeconds();
   let segI = inicio.getSeconds();
-  let seg = calcDelta(segI, segF);
-  let min = calcDelta(minI, minF);
-  console.log(seg);
-  console.log(min);
+  let seg = calc(segI, segF);
+  let min = calc(minI, minF);
   setTimer(min, seg);
 });
-function calcDelta(i, o) {
-  // Calcula tempo passado
+function calc(i, o) {
   let tempo;
   if (i <= o) tempo = o - i;
   else tempo = 60 + i - o;
@@ -37,12 +34,15 @@ function calcDelta(i, o) {
   return tempo;
 }
 function setTimer(m, s) {
-  m = poeZero(m);
-  s = poeZero(s);
-  minutos.textContent = m;
-  segundos.textContent = s;
+  let minAtual = minutos.textContent;
+  minAtual = parseInt(minAtual) + m;
+  let segAtual = segundos.textContent;
+  segAtual = parseInt(segAtual) + s;
+  segundos.textContent = formataTempo(segAtual);
+  minutos.textContent = formataTempo(minAtual);
 }
-function poeZero(x) {
+function formataTempo(x) {
+  if (x > 60) x -= 60;
   if (x < 10) return "0" + x;
   return x;
 }
