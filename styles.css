@@ -1,5 +1,6 @@
 * {
   background: burlywood;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 main {
   margin: 200px 10% 0 10%;
@@ -7,6 +8,8 @@ main {
 .titulo {
   font-size: 3rem;
   text-align: center;
+  text-decoration: underline;
+  color: royalblue;
 }
 .contador {
   text-align: center;

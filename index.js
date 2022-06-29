@@ -1,53 +1,38 @@
-//botoes
+// botoes
 let comeca = document.querySelector("#comeca");
 let para = document.querySelector("#para");
 let zera = document.querySelector("#zera");
-//span tempo
+// span tempo
 let minutos = document.querySelector("#minutos");
 let segundos = document.querySelector("#segundos");
+let dezMiliSec = document.querySelector("#milisec");
 
-let inicio;
-let final;
 let controlador = false;
-
 comeca.addEventListener("click", () => {
-  inicio = new Date();
   controlador = true;
 });
 para.addEventListener("click", () => {
-  final = new Date();
-  if (controlador) {
-    let minF = final.getMinutes();
-    let minI = inicio.getMinutes();
-    let segF = final.getSeconds();
-    let segI = inicio.getSeconds();
-    let seg = calc(segI, segF);
-    let min = calc(minI, minF);
-    setTimer(min, seg);
-    controlador = false;
-  }
+  controlador = false;
 });
-function calc(i, o) {
-  let tempo;
-  if (i <= o) tempo = o - i;
-  else tempo = 60 + i - o;
-  if (tempo > 60) tempo -= 60;
-  return tempo;
-}
-function setTimer(m, s) {
-  let minAtual = minutos.textContent;
-  minAtual = parseInt(minAtual) + m;
-  let segAtual = segundos.textContent;
-  segAtual = parseInt(segAtual) + s;
-  segundos.textContent = formataTempo(segAtual);
-  minutos.textContent = formataTempo(minAtual);
-}
-function formataTempo(x) {
-  if (x > 60) x -= 60;
-  if (x < 10) return "0" + x;
-  return x;
+let intervalId = setInterval(() => {
+  if (controlador) {
+    dezMiliSec.textContent = formata(parseInt(dezMiliSec.textContent) + 1);
+    if (dezMiliSec.textContent == 100) {
+      dezMiliSec.textContent = 0;
+      segundos.textContent = formata(parseInt(segundos.textContent) + 1);
+      if (segundos.textContent == 60) {
+        segundos.textContent = 0;
+        minutos.textContent = formata(parseInt(minutos.textContent) + 1);
+      }
+    }
+  }
+}, 10);
+function formata(t) {
+  if (t < 10) return "0" + t;
+  return t;
 }
 zera.addEventListener("click", () => {
+  dezMiliSec.textContent = "00";
   segundos.textContent = "00";
   minutos.textContent = "00";
 });
